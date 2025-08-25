@@ -1,13 +1,16 @@
 import React from 'react';
 import './ExpenseItem.css';
+import ExpenseDate from "./ExpenseDate.jsx";
 
-const ExpenseItem = () => {
+const ExpenseItem = ({title, price, date}) => {
+    /*console.log(props);
+    console.log(props.title)*/
     return (
         <div className='expense-item'>
-            <div>2025-08-24</div>
+            <ExpenseDate date={date}/>
             <div className='expense-item__description'>
-                <h2>점심밥</h2>
-                <div className='expense-item__price'>10000원</div>
+                <h2>{title}</h2>
+                <div className='expense-item__price'>{price}원</div>
             </div>
         </div>
     );
