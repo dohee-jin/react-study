@@ -64,7 +64,10 @@ const ExpenseForm = ({ onSave }) => {
         console.log(userInput);
 
         // 상위컴포넌트(App)이 내려준 onAddExpense 라는 함수를 onAdd 로 내려받음
-        onSave(userInput);
+        onSave({
+            ...userInput,
+            date: new Date(userInput.date)
+        });
 
         // 입력창 초기화
         /*

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import NewExpense from "./components/new-expenses/NewExpense.jsx";
 import ExpenseList from "./components/expenses/ExpenseList.jsx";
 import Counter from "./components/Counter.jsx";
@@ -39,12 +39,19 @@ const App = ()  => {
         },
     ];
 
+    // 지출항목 배열을 상태관리
+    const [expenses, setExpenses] = useState(expenseList);
+
     // 상향식 데이터 전달을 위해 하위 컴포넌트에게 함수 하나를 내려줌
     const onAddExpense = (userInput) => {
-        console.log('상향식 데이터 전달용 함수');
-        console.log(`끌어올려진 데이터: `, userInput)
-        expenseList.push(userInput);
-        console.log(expenseList)
+        // console.log('상향식 데이터 전달용 함수');
+        // console.log(`끌어올려진 데이터: `, userInput)
+
+        // const newArr = [...expenses];
+        // newArr.push(userInput)
+
+        setExpenses(prev => [...prev, userInput]);
+        // console.log(expenseList)
     }
 
     return (
@@ -52,7 +59,7 @@ const App = ()  => {
             {/*< CheckBoxStyle />*/}
            {/* <Counter />*/}
             <NewExpense onSave={onAddExpense}/>
-            <ExpenseList expenses={expenseList}/>
+            <ExpenseList expenses={expenses}/>
             {/*태그를 가변적으로 처리할 때 props children을 사용한다*/}
             {/*<Card>
                  전달할 태그 작성

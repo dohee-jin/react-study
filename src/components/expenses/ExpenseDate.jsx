@@ -3,9 +3,9 @@ import './ExpenseDate.css';
 
 const ExpenseDate = (props) => {
 
-    console.log(props)
+    // console.log(props)
     const {date} = props;
-    console.log(`date: `, date)
+    // console.log(`date: `, date)
 
     const month = date?.toLocaleString('en-US', {month: 'long'}).slice(0, 3);
     return (
