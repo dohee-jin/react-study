@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './ExpenseForm.css';
 
-const ExpenseForm = ({ onSave, onChange }) => {
+const ExpenseForm = ({ onSave, /*onChange*/ onCancel }) => {
 
     // 입력값 단일 상태 관리
     /*const [title, setTitle] = useState('');
@@ -81,10 +81,15 @@ const ExpenseForm = ({ onSave, onChange }) => {
         setUserInput(initUserInputState);
     }
 
+    // 내 코드
     // 취소 버튼 핸들러
+    /*
     const cancelBtnHandler = e => {
         onChange(true);
     }
+    */
+
+
 
     return (
         <form onSubmit={handleSubmit}>
@@ -115,7 +120,7 @@ const ExpenseForm = ({ onSave, onChange }) => {
                 </div>
             </div>
             <div className='new-expense__actions'>
-                <button type='button' className='cancel-btn' onClick={cancelBtnHandler}>cancel</button>
+                <button type='button' className='cancel-btn' onClick={onCancel}>cancel</button>
                 <button type='submit'>Add Expense</button>
             </div>
         </form>
