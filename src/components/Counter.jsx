@@ -4,8 +4,10 @@ const Counter = () => {
     const [count, setCount] = useState(10)
 
     const increaseHandler = () => {
-        console.log(`count: ${count}`);
-        return setCount(count + 1);
+        // 이전 값을 콜백으로 받아서 동시성 문제 해결
+        setCount((prev) => prev + 1);
+        setCount((prev) => prev + 1);
+
     };
     const decreaseHandler = () => setCount(count - 1);
 

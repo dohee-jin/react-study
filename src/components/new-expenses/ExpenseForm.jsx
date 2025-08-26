@@ -29,22 +29,28 @@ const ExpenseForm = () => {
     };
 
     // 제목 입력 이벤트
-    const titleChangeHandler = e => setUserInput({
-        ...userInput,
-        title: e.target.value,
-    })
+    const titleChangeHandler = e => {
+        /*
+            리액트는 기존객체에서 프로퍼티 값만을 바꾸면 상태변경을 감지하지 못함
+            상태 변화를 감지하기 위해서는 새 객체를 넣어줘야 함
+         */
+        setUserInput(prevUserInput => ({
+            ...prevUserInput,
+            title: e.target.value,
+        }));
+    }
 
     // 가격 입력 이벤트
-    const priceChangeHandler = e => setUserInput({
-        ...userInput,
+    const priceChangeHandler = e => setUserInput(prev => ({
+        ...prev,
         price: +e.target.value,
-    })
+    }));
 
     // 날짜 입력 이벤트
-    const dateChangeHandler = e => setUserInput({
-        ...userInput,
+    const dateChangeHandler = e => setUserInput(prev => ({
+        ...prev,
         date: e.target.value,
-    })
+    }));
 
     // const $inputElement = document.querySelectorAll('input');
 
@@ -58,7 +64,7 @@ const ExpenseForm = () => {
 
         // 입력창 초기화
         /*
-          input태그에다가 값을 입력하면 -> 상태변수에 저장됨  (단방향)
+          input 태그에다가 값을 입력하면 -> 상태변수에 저장됨  (단방향)
           상태변수의 값을 바꾸면 -> input이 갱신된다?  (X)    (양방향)
          */
         // setTitle('');

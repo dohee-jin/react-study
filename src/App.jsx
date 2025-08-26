@@ -1,7 +1,8 @@
 import React from "react";
-import ExpenseList from "./components/expenses/ExpenseList.jsx";
 import NewExpense from "./components/new-expenses/NewExpense.jsx";
-import CheckBoxStyle from "./components/practice/CheckBoxStyle.jsx";
+import ExpenseList from "./components/expenses/ExpenseList.jsx";
+import Counter from "./components/Counter.jsx";
+import Card from "./components/ui/Card.jsx";
 
 /*
     jsx : 리액트에서 사용하는 특수한 js문법, 태그를 그대로 쓰면 알아서 변환
@@ -40,9 +41,9 @@ const App = ()  => {
 
     return (
         <>
-            < CheckBoxStyle />
+            {/*< CheckBoxStyle />*/}
+           {/* <Counter />*/}
             <NewExpense />
-            {/*<Counter />*/}
             <ExpenseList expenses={expenseList}/>
             {/*태그를 가변적으로 처리할 때 props children을 사용한다*/}
             {/*<Card>
