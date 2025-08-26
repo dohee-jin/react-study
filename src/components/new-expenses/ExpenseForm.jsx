@@ -3,10 +3,20 @@ import './ExpenseForm.css';
 
 const ExpenseForm = () => {
 
-    // 입력값 상태 관리
-    const [title, setTitle] = useState('');
+    // 입력값 단일 상태 관리
+    /*const [title, setTitle] = useState('');
     const [price, setPrice] = useState(0);
-    const [date, setDate] = useState(null);
+    const [date, setDate] = useState(null);*/
+
+    //
+
+    const initUserInputState = {
+        title: '',
+        price: 0,
+        date: null
+    };
+
+    const [userInput, setUserInput] = useState(initUserInputState);
 
 
     // 오늘 날짜를 YYYY-MM-DD 형식으로 가져오는 함수
@@ -18,24 +28,52 @@ const ExpenseForm = () => {
         return `${year}-${month}-${day}`;
     };
 
+    // 제목 입력 이벤트
+    const titleChangeHandler = e => setUserInput({
+        ...userInput,
+        title: e.target.value,
+    })
+
+    // 가격 입력 이벤트
+    const priceChangeHandler = e => setUserInput({
+        ...userInput,
+        price: +e.target.value,
+    })
+
+    // 날짜 입력 이벤트
+    const dateChangeHandler = e => setUserInput({
+        ...userInput,
+        date: e.target.value,
+    })
+
     // const $inputElement = document.querySelectorAll('input');
 
     // form 제출 이벤트
-    const handelSubmit = e => {
-        e.preventDefault(); // submit의 기본동작: 새로고침을 막기위해 사용
-        console.log('form이 제출됨!');
+    const handleSubmit = e => {
+        e.preventDefault();
+        // console.log('form이 제출됨!');
+        // const payload = { title, price, date };
 
-        const payload = {title, date, price}
+        console.log(userInput);
 
-        console.log(payload);
+        // 입력창 초기화
+        /*
+          input태그에다가 값을 입력하면 -> 상태변수에 저장됨  (단방향)
+          상태변수의 값을 바꾸면 -> input이 갱신된다?  (X)    (양방향)
+         */
+        // setTitle('');
+        // setPrice(0);
+        // setDate(null);
+
+        setUserInput(initUserInputState);
     }
 
     return (
-        <form onSubmit={handelSubmit}>
+        <form onSubmit={handleSubmit}>
             <div className='new-expense__controls'>
                 <div className='new-expense__control'>
                     <label>Title</label>
-                    <input type='text'  onInput={e => setTitle(e.target.value)}/>
+                    <input type='text'  onInput={titleChangeHandler} value={userInput.title}/>
                 </div>
                 <div className='new-expense__control'>
                     <label>Price</label>
@@ -43,8 +81,8 @@ const ExpenseForm = () => {
                         type='number'
                         min='100'
                         step='100'
-
-                        onInput={e => setPrice(+(e.target.value))}
+                        onInput={priceChangeHandler}
+                        value={userInput.price || ''}
                     />
                 </div>
                 <div className='new-expense__control'>
@@ -53,7 +91,8 @@ const ExpenseForm = () => {
                         type='date'
                         min='2019-01-01'
                         max={getTodayDate()}
-                        onInput={e => setDate(e.target.value)}
+                        onInput={dateChangeHandler}
+                        value={userInput.date ?? ''} // 1 || '' 데이터가 falsy 이면 오른쪽, 1 ?? '' 데이터가 널이면 오른쪽 것
                     />
                 </div>
             </div>

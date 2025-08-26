@@ -1,10 +1,5 @@
 import React from "react";
-import Hello from './components/Hello';
-import Bye from './components/Bye'
-import ExpenseItem from "./components/expenses/ExpenseItem.jsx";
 import ExpenseList from "./components/expenses/ExpenseList.jsx";
-import Card from "./components/ui/Card.jsx";
-import Counter from "./components/Counter.jsx";
 import NewExpense from "./components/new-expenses/NewExpense.jsx";
 import CheckBoxStyle from "./components/practice/CheckBoxStyle.jsx";
 
