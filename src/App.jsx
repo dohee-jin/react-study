@@ -39,11 +39,19 @@ const App = ()  => {
         },
     ];
 
+    // 상향식 데이터 전달을 위해 하위 컴포넌트에게 함수 하나를 내려줌
+    const onAddExpense = (userInput) => {
+        console.log('상향식 데이터 전달용 함수');
+        console.log(`끌어올려진 데이터: `, userInput)
+        expenseList.push(userInput);
+        console.log(expenseList)
+    }
+
     return (
         <>
             {/*< CheckBoxStyle />*/}
            {/* <Counter />*/}
-            <NewExpense />
+            <NewExpense onSave={onAddExpense}/>
             <ExpenseList expenses={expenseList}/>
             {/*태그를 가변적으로 처리할 때 props children을 사용한다*/}
             {/*<Card>

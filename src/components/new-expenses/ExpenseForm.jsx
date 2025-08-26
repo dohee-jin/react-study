@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './ExpenseForm.css';
 
-const ExpenseForm = () => {
+const ExpenseForm = ({ onSave }) => {
 
     // 입력값 단일 상태 관리
     /*const [title, setTitle] = useState('');
@@ -60,7 +60,11 @@ const ExpenseForm = () => {
         // console.log('form이 제출됨!');
         // const payload = { title, price, date };
 
+
         console.log(userInput);
+
+        // 상위컴포넌트(App)이 내려준 onAddExpense 라는 함수를 onAdd 로 내려받음
+        onSave(userInput);
 
         // 입력창 초기화
         /*
