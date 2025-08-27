@@ -9,13 +9,25 @@ const CourseInput = ({ onSave }) => {
         text: '',
     }
 
+    // 목표 input 상태 관리
     const[goal, setGoal] = useState(initGoal);
+
+    // 입력값 오류 여부 상태 관리
+    const[isValid, setIsValid] = useState(null);
 
     // 목표 입력 이벤트
     const goalInputHandler = e => {
+
+        let inputValue = e.target.value;
+
+        // 입력값 검증
+        if(inputValue.trim()) {
+            setIsValid(true);
+        }
+
         setGoal(() => ({
             id: 'g'+ Math.floor(Math.random() * 100).toString(),
-            text: e.target.value,
+            text: inputValue,
         }))
     }
 
@@ -23,19 +35,29 @@ const CourseInput = ({ onSave }) => {
     const addGoalSubmit = e => {
         e.preventDefault();
 
+        // 입력값 검증
+        if(!goal.text.trim()) {
+            setIsValid(false);
+            return;
+        }
+
         onSave(goal);
 
         // 입력창 초기화
-        setGoal(initGoal)
+        setGoal(initGoal);
+        setIsValid(true);
     }
 
     return (
-        <form>
-            <div className='form-control'>
+        <form onSubmit={addGoalSubmit}>
+            <div className={`form-control ${isValid === false ? 'invalid' : ''}`}>
                 <label>나의 목표</label>
-                <input type='text' onInput = {goalInputHandler} value={goal.text || ''}/>
+                <input type='text'
+                       onInput = {goalInputHandler}
+                       value = {goal.text}
+                />
             </div>
-            <Button type='submit' onClick={addGoalSubmit}>목표 추가하기</Button>
+            <Button type='submit' >목표 추가하기</Button>
         </form>
     );
 };

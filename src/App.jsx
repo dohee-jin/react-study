@@ -35,15 +35,7 @@ const App = ()  => {
     }
 
     const onCancelGoal = (id) => {
-        for(const goal of goals) {
-            if(goal.id === id) {
-                goals.splice(id, 1);
-                break;
-            }
-        }
-        const newGoals = [...goals];
-
-        setGoals(() => [...newGoals])
+        setGoals((prev) => prev.filter(goal => goal.id !== id))
     }
 
     return (
