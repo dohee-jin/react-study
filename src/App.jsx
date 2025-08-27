@@ -37,7 +37,7 @@ const App = ()  => {
     const onCancelGoal = (id) => {
         for(const goal of goals) {
             if(goal.id === id) {
-                goals.pop(goal);
+                goals.splice(id, 1);
                 break;
             }
         }
