@@ -1,5 +1,5 @@
 import React from 'react';
-import './CourseList.css';
+import styles from './CourseList.module.css';
 import CourseItem from './CourseItem';
 
 const CourseList = ({goals, onCancel}) => {
@@ -12,7 +12,7 @@ const CourseList = ({goals, onCancel}) => {
         />)
 
     return (
-        <ul className='goal-list'>
+        <ul className={styles['goal-list']}>
             { content }
         </ul>
     );

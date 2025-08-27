@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
-import './CourseInput.css';
+import styles from './CourseInput.module.css';
 import Button from '../ui/Button';
 
 const CourseInput = ({ onSave }) => {
+
+    const {'form-control': formControl, invalid} = styles
 
     const initGoal = {
         id: '',
@@ -50,7 +52,7 @@ const CourseInput = ({ onSave }) => {
 
     return (
         <form onSubmit={addGoalSubmit}>
-            <div className={`form-control ${isValid === false ? 'invalid' : ''}`}>
+            <div className={`${formControl} ${isValid === false ? invalid : ''}`}>
                 <label>나의 목표</label>
                 <input type='text'
                        onInput = {goalInputHandler}
