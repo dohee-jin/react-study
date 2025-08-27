@@ -56,7 +56,7 @@ const CourseInput = ({ onSave }) => {
                 <label>나의 목표</label>
                 <input type='text'
                        onInput = {goalInputHandler}
-                       value = {goal.text}
+                       value = {goal.text || ''}
                 />
             </div>
             <Button type='submit' >목표 추가하기</Button>
