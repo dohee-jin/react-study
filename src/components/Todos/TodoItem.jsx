@@ -26,7 +26,7 @@ const TodoItem = ({id, todo, onCancel, onFinish}) => {
     return (
         <li className={itemStyle} id={id}>
             <div className={`${checkCircle} ${isFinished ? active : ''}`} onClick={finishTodoHandler}>
-                <MdDone />
+                { isFinished && <MdDone /> }
             </div>
             <span className={`${text} ${isFinished ? finish : ''}`}>{todo}</span>
             <div className={remove} onClick={cancelTodoHandler}>
