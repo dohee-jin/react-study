@@ -5,17 +5,14 @@ import TodoItem from './TodoItem';
 
 const TodoMain = ({todos, onCancel, onFinish}) => {
 
-    const todoList = todos.map(todo => <TodoItem
-        key={todo.id}
-        id={todo.id}
-        todo={todo.todo}
-        onCancel={onCancel}
-        onFinish={onFinish}
-    />)
-
     return (
         <ul className={styles['todo-list']}>
-            {todoList}
+            {todos.map(todo => <TodoItem
+                key={todo.id}
+                item={todo}
+                onCancel={onCancel}
+                onFinish={onFinish}
+            />)}
         </ul>
     );
 };
